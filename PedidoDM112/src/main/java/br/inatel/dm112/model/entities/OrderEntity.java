@@ -27,22 +27,18 @@ public class OrderEntity {
 	@Column(name = "valor")
 	private float value;
 
-	private int status;
+	private int orderStatus;
 
 	@Column(name = "dataPedido", nullable = false)
 	@Temporal(TemporalType.DATE)
 	private Date orderDate;
 
-	@Column(name = "dataEmissao", nullable = true)
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date issueDate;
-
-	@Column(name = "dataPagamento", nullable = true)
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date paymentDate;
+	@Column(name = "horaPedido", nullable = false)
+	@Temporal(TemporalType.TIME)
+	private Date orderHour;
 
 	public OrderEntity() {
-		this.status = STATUS.FILLED.ordinal();
+		this.orderStatus = STATUS.ON_THE_WAY.ordinal();
 	}
 
 	public Integer getNumber() {
@@ -53,20 +49,12 @@ public class OrderEntity {
 		this.number = number;
 	}
 
-	public float getValue() {
-		return value;
-	}
-
-	public void setValue(float value) {
-		this.value = value;
-	}
-
 	public int getStatus() {
-		return status;
+		return orderStatus;
 	}
 
-	public void setStatus(int status) {
-		this.status = status;
+	public void setStatus(int orderStatus) {
+		this.orderStatus = orderStatus;
 	}
 
 	public Date getOrderDate() {
@@ -76,35 +64,27 @@ public class OrderEntity {
 	public void setOrderDate(Date orderDate) {
 		this.orderDate = orderDate;
 	}
+	
+	public Date getOrderHour() {
+		return orderHour;
+	}
+	
+	public void setOrderHour(Date orderHour) {
+		this.orderHour = orderHour;
+	}
 
 	public String getCPF() {
 		return CPF;
 	}
 	
-	public void setCPF(String cPF) {
-		CPF = cPF;
-	}
-
-	public Date getIssueDate() {
-		return issueDate;
-	}
-
-	public void setIssueDate(Date issueDate) {
-		this.issueDate = issueDate;
-	}
-
-	public Date getPaymentDate() {
-		return paymentDate;
-	}
-
-	public void setPaymentDate(Date paymentDate) {
-		this.paymentDate = paymentDate;
+	public void setCPF(String cpf) {
+		CPF = cpf;
 	}
 
 	@Override
 	public String toString() {
-		return "OrderEntity [number=" + number + ", CPF=" + CPF + ", value=" + value + ", status=" + status + ", orderDate="
-				+ orderDate + ", issueDate=" + issueDate + ", paymentDate=" + paymentDate + "]";
+		return "OrderEntity [CPF=" + CPF + ", number=" + number + ", status=" + orderStatus + ", orderDate="
+				+ orderDate + ", orderHour=" + orderHour + "]";
 	}
 
 }
