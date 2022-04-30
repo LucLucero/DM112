@@ -1,65 +1,57 @@
 package br.inatel.dm112.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Order {
 
-//	@JsonIgnore
-	public static enum STATUS {ON_THE_WAY, DELIVERED}
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-	private int number;
+
+@Entity
+@Table(name="Orders")
+public class Order implements Serializable{
+
+	private static final long serialVersionUID = 1;
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private long id;
+	
 
 	private String cpf;
 
 	private int orderStatus;
-
-//	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+	
 	private Date orderDate;
 	
 	private Date orderHour;
+
+	private int orderNumber;
+	
+
+	public static enum STATUS {ON_THE_WAY, DELIVERED}
 	
 	public Order() {
 	}
 
-	public Order(int number, String cpf, int orderStatus, Date orderDate, Date orderHour) {
-		super();
-		this.number = number;
-		this.cpf = cpf;
-		this.orderStatus = orderStatus;
-		this.orderDate = orderDate;
-		this.orderHour = orderHour;
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public int getNumber() {
-		return number;
+		return orderNumber;
 	}
 
 	public void setNumber(int number) {
-		this.number = number;
-	}
-
-	public int getStatus() {
-		return orderStatus;
-	}
-
-	public void setStatus(int orderStatus) {
-		this.orderStatus = orderStatus;
-	}
-
-	public Date getOrderDate() {
-		return orderDate;
-	}
-
-	public void setOrderDate(Date orderDate) {
-		this.orderDate = orderDate;
-	}
-	
-	public Date getOrderHour() {
-		return orderHour;
-	}
-
-	public void setOrderHour(Date orderHour) {
-		this.orderHour = orderHour;
+		this.orderNumber = number;
 	}
 
 	public String getCpf() {
@@ -70,13 +62,50 @@ public class Order {
 		this.cpf = cpf;
 	}
 
+	public int getOrderStatus() {
+		return orderStatus;
+	}
 
-	@Override
-	public String toString() {
-		return "Order [cpf=" + cpf + ", number=" + number + ", status=" + orderStatus + ", orderDate="
-				+ orderDate + ", orderHour=" + orderHour + "]";
+	public void setOrderStatus(int orderStatus) {
+		this.orderStatus = orderStatus;
+	}
+
+	public Date getOrderDate() {
+		return orderDate;
+	}
+
+	public void setOrderDate(Date orderDate) {
+		this.orderDate = orderDate;
+	}
+
+	public Date getOrderHour() {
+		return orderHour;
+	}
+
+	public void setOrderHour(Date orderHour) {
+		this.orderHour = orderHour;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public int retrieveOrder(int number) {
+		this.orderNumber = getNumber();
+		return this.orderNumber;
+	}
+
+	public void registerDelivery(Order clientDelivery) {
+		clientDelivery.setOrderStatus(1);				
+		
+	}
+
+	
+
+
+	
 	}
 
 
 
-}
+

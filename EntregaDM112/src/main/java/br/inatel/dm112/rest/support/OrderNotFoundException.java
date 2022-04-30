@@ -1,5 +1,6 @@
 package br.inatel.dm112.rest.support;
 
+@SuppressWarnings("serial")
 public class OrderNotFoundException extends RuntimeException {
 
 	public OrderNotFoundException() {

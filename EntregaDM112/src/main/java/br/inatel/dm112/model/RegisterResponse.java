@@ -13,19 +13,13 @@ public class RegisterResponse {
 	private Date orderHour;
 	private int orderStatus;
 	
-	public RegisterResponse() {
-	}
-	
-	public RegisterResponse(int orderNumber, Date orderDate, Date orderHour, int orderStatus) {
-		super();
-		this.orderNumber = orderNumber;
-		this.orderDate = orderDate;
-		this.orderHour = orderHour;
+	public RegisterResponse(int orderNumber, int orderStatus) {
+		this.orderNumber = orderNumber;		
 		this.orderStatus = orderStatus;
 	}
 	
-	public static RegisterResponse createErrorStatus(int orderNumber, Date orderDate, Date orderHour, REGISTER_STATUS errorStatus) {
-		return new RegisterResponse(orderNumber, orderDate, orderHour, errorStatus.ordinal());
+	public static RegisterResponse createErrorStatus(int orderNumber, REGISTER_STATUS errorStatus) {
+		return new RegisterResponse(orderNumber, errorStatus.ordinal());
 	}
 	
 	public int getStatus() {
@@ -45,22 +39,7 @@ public class RegisterResponse {
 		this.orderNumber = orderNumber;
 	}
 	
-	public Date getOrderDate() {
-		return orderDate;
-	}
-
-	public void setOrderDate(Date orderDate) {
-		this.orderDate = orderDate;
-	}
 	
-	public Date getOrderHour() {
-		return orderHour;
-	}
-
-	public void setOrderHour(Date orderHour) {
-		this.orderHour = orderHour;
-	}
-
 	@Override
 	public String toString() {
 		return "DeliveryStatus [orderNumber=" + orderNumber + ", status=" + orderStatus + ",  orderDate=" 

@@ -1,6 +1,8 @@
 package br.inatel.dm112.rest.support;
 
+@SuppressWarnings("serial")
 public class OrderDuplicateException extends RuntimeException {
+
 
 	public OrderDuplicateException() {
 	}

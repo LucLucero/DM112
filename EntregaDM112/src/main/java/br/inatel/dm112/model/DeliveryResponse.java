@@ -1,6 +1,5 @@
 package br.inatel.dm112.model;
 
-
 public class DeliveryResponse {
 
 	public enum DELIVERY_STATUS {
@@ -10,11 +9,9 @@ public class DeliveryResponse {
 	private int orderNumber;
 	private int orderStatus;
 	
-	public DeliveryResponse() {
-	}
 	
 	public DeliveryResponse(int orderNumber, int orderStatus) {
-		super();
+		
 		this.orderStatus = orderStatus;
 		this.orderNumber = orderNumber;
 	}
@@ -22,7 +19,9 @@ public class DeliveryResponse {
 	public static DeliveryResponse createErrorStatus(int orderNumber, DELIVERY_STATUS errorStatus) {
 		return new DeliveryResponse(orderNumber, errorStatus.ordinal());
 	}
-
+	
+		
+	
 	public int getStatus() {
 		return orderStatus;
 	}
